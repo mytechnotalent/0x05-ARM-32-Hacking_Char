@@ -1,2 +1,113 @@
+![image](https://github.com/mytechnotalent/0x05_arm_32_hacking_char/blob/main/RPI32AAHC.png?raw=true)
+
 # 0x05_arm_32_hacking_char
 About ARM 32-bit Raspberry Pi Hacking Char example in Kali Linux.
+
+## Schematic
+![image](https://github.com/mytechnotalent/0x05_arm_32_hacking_char/blob/main/schematic.png?raw=true)
+
+## Parts
+[Raspberry Pi 4](https://www.adafruit.com/product/4292)
+[64GB Micro SD Card](https://www.amazon.com/SDSDQUA-064G-A11-Professional-MicroSDXC-formatted-recording/dp/106171327X)
+[Micro SD Card Reader/Writer](https://www.amazon.com/uni-Adapter-Supports-Compatible-MacBook/dp/B081VHSB2V)
+
+## STEP 1: Download Kali Linux ARM Image - Raspberry Pi 32-bit
+[Download](https://images.kali.org/arm-images/kali-linux-2020.3a-rpi3-nexmon.img.xz)
+
+## STEP 2: Download balenaEtcher
+[Download](https://www.balena.io/etcher)
+
+## STEP 3: Flash Kali Linux ARM Image
+[Watch YT Null Byte Video](https://www.youtube.com/watch?v=Jquf9BDm4iU&t=493s)
+
+## STEP 4: Power Up RPI & Login
+***POWER UP DEVICE AND LOGIN AS KALI AND SET UP SSH***
+
+## STEP 5: Create File In VIM
+```c
+#include <stdio.h>
+
+int main()
+{
+    char x;
+
+    x = 'h';
+
+    printf("%c\n", x);
+
+    return 0;
+}
+```
+
+## STEP 6: Save File As - 0x04_arm_32_hacking_double.c [:wq]
+
+## STEP 7: Build & Link
+```
+gcc -o 0x04_arm_32_hacking_double 0x04_arm_32_hacking_double.c
+```
+
+## STEP 8: Run Binary
+```
+./0x04_arm_32_hacking_double
+10.987654321
+```
+
+## STEP 9: Run Radare2 - Debug Mode
+```
+r2 -d ./0x04_arm_32_hacking_double
+```
+
+## STEP 10: Run Radare2 - Debug Step 1 [Examine Binary @ Entry Point]
+```
+aaa
+s main
+vv
+```
+![image](https://github.com/mytechnotalent/0x04_arm_32_hacking_double/blob/main/1.png?raw=true)
+
+## STEP 11: Run Radare2 - Debug Step 2 [Examine LSB & MSB @0x004xx538]
+```
+q
+[0x0043f510]> pf x @0x0043f538
+0x0043f538 = 0xd3c0e56c
+```
+
+## STEP 12: Run Radare2 - Debug Step 3 [Hack double]
+REMEMBER LITTLE ENDIAN!
+```
+[0x0043f510]> w \x71\x7c\xc9\xd3 @0x0043f538
+```
+
+## STEP 13: Run Radare2 - Debug Step 4 [Review Hack]
+```
+[0x0043f510]> pf x @0x0043f538
+0x0043f538 = 0xd3c97c71
+```
+
+## STEP 14: Run Radare2 - Debug Step 5 [Hack Binary Permanently]
+```
+q
+r2 -w ./0x04_arm_32_hacking_double
+[0x00000400]> aaa
+[0x00000400]> s main
+[0x00000510]> vv
+```
+![image](https://github.com/mytechnotalent/0x04_arm_32_hacking_double/blob/main/2.png?raw=true)
+```
+[0x00000510]> w \x71\x7c\xc9\xd3 @0x00000538
+q
+```
+
+## STEP 15: Prove Hack
+```
+./0x04_arm_32_hacking_double
+10.987654322
+```
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
