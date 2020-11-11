@@ -39,22 +39,22 @@ int main()
 }
 ```
 
-## STEP 6: Save File As - 0x04_arm_32_hacking_double.c [:wq]
+## STEP 6: Save File As - 0x05_arm_32_hacking_chare.c [:wq]
 
 ## STEP 7: Build & Link
 ```
-gcc -o 0x04_arm_32_hacking_double 0x04_arm_32_hacking_double.c
+gcc -o 0x05_arm_32_hacking_char 0x04_arm_32_hacking_char.c
 ```
 
 ## STEP 8: Run Binary
 ```
-./0x04_arm_32_hacking_double
-10.987654321
+./0x05_arm_32_hacking_char
+h
 ```
 
 ## STEP 9: Run Radare2 - Debug Mode
 ```
-r2 -d ./0x04_arm_32_hacking_double
+r2 -d ./0x05_arm_32_hacking_char
 ```
 
 ## STEP 10: Run Radare2 - Debug Step 1 [Examine Binary @ Entry Point]
@@ -63,45 +63,44 @@ aaa
 s main
 vv
 ```
-![image](https://github.com/mytechnotalent/0x04_arm_32_hacking_double/blob/main/1.png?raw=true)
+![image](https://github.com/mytechnotalent/0x05_arm_32_hacking_char/blob/main/1.png?raw=true)
 
-## STEP 11: Run Radare2 - Debug Step 2 [Examine LSB & MSB @0x004xx538]
+## STEP 11: Run Radare2 - Debug Step 2 [Examine char]
 ```
 q
-[0x0043f510]> pf x @0x0043f538
-0x0043f538 = 0xd3c0e56c
+[0x0044a50c]> pf x @0x0044a512
+0x0044a512 = 0x71fb2368
 ```
 
-## STEP 12: Run Radare2 - Debug Step 3 [Hack double]
-REMEMBER LITTLE ENDIAN!
+## STEP 12: Run Radare2 - Debug Step 3 [Hack char]
 ```
-[0x0043f510]> w \x71\x7c\xc9\xd3 @0x0043f538
+[0x0044a50c]> wa mov r3, 0x69 @0x0044a512
 ```
 
 ## STEP 13: Run Radare2 - Debug Step 4 [Review Hack]
 ```
-[0x0043f510]> pf x @0x0043f538
-0x0043f538 = 0xd3c97c71
+[0x0044a50c]> pf x @0x0044a512
+0x0044a512 = 0x71fb2369
 ```
 
 ## STEP 14: Run Radare2 - Debug Step 5 [Hack Binary Permanently]
 ```
 q
-r2 -w ./0x04_arm_32_hacking_double
+r2 -w ./0x05_arm_32_hacking_char
 [0x00000400]> aaa
 [0x00000400]> s main
 [0x00000510]> vv
 ```
-![image](https://github.com/mytechnotalent/0x04_arm_32_hacking_double/blob/main/2.png?raw=true)
+![image](https://github.com/mytechnotalent/0x05_arm_32_hacking_char/blob/main/2.png?raw=true)
 ```
-[0x00000510]> w \x71\x7c\xc9\xd3 @0x00000538
 q
+[0x0000050c]> wa mov r3, 0x69 @0x00000512
 ```
 
 ## STEP 15: Prove Hack
 ```
-./0x04_arm_32_hacking_double
-10.987654322
+./0x05_arm_32_hacking_char
+i
 ```
 
 ## Contributing
