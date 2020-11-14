@@ -43,7 +43,7 @@ int main()
 
 ## STEP 7: Build & Link
 ```
-gcc -o 0x05_arm_32_hacking_char 0x04_arm_32_hacking_char.c
+gcc -o 0x05_arm_32_hacking_char 0x05_arm_32_hacking_char.c
 ```
 
 ## STEP 8: Run Binary
