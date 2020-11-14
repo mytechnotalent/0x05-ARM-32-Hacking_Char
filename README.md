@@ -39,7 +39,7 @@ int main()
 }
 ```
 
-## STEP 6: Save File As - 0x05_arm_32_hacking_chare.c [:wq]
+## STEP 6: Save File As - 0x05_arm_32_hacking_char.c [:wq]
 
 ## STEP 7: Build & Link
 ```
