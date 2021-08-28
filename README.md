@@ -3,6 +3,16 @@
 # 0x05_arm_32_hacking_char
 ARM 32-bit Raspberry Pi Hacking Char example in Kali Linux..
 
+<br>
+
+## Join DC540 Discord [HERE](https://discord.gg/TC9V9RCr5U)
+
+<br>
+
+## FREE Reverse Engineering Self-Study Course [HERE](https://github.com/mytechnotalent/Reverse-Engineering-Tutorial)
+
+<br>
+
 ## Schematic
 ![image](https://github.com/mytechnotalent/0x05_arm_32_hacking_char/blob/main/schematic.png?raw=true)
 
